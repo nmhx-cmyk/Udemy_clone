@@ -1,0 +1,683 @@
+/* ============================================================
+   1. TOKENS — biến thiết kế dùng chung cả trang
+   Đổi màu / font ở đây một lần là thay đổi toàn bộ website.
+   --purple      : màu thương hiệu (nút chính, highlight)
+   --ink         : màu chữ chính (gần đen)
+   --gray-*      : thang độ xám (100 nhạt nhất -> 700 đậm nhất)
+   --radius      : độ bo góc chung
+   --header-h    : chiều cao thanh header
+   --font        : danh sách font hệ thống, fallback tuần tự
+   ============================================================ */
+:root {
+  --purple: #a435f0;
+  --purple-dark: #8710d8;
+  --ink: #1c1d1f;
+  --gray-700: #3d3f42;
+  --gray-600: #6a6f73;
+  --gray-300: #d1d7dc;
+  --gray-100: #f7f9fa;
+  --white: #ffffff;
+  --radius: 4px;
+  --header-h: 64px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ============================================================
+   2. BASE — reset & style gốc
+   box-sizing: border-box -> kích thước box tính luôn padding
+   và border, tránh vỡ layout khi chỉnh width.
+   ============================================================ */
+* { box-sizing: border-box; }
+
+/* Cuộn trang mượt khi nhảy theo anchor link (#courses-1, ...) */
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+/* Link mặc định giữ nguyên màu chữ, bỏ gạch chân */
+a { color: inherit; text-decoration: none; }
+
+/* Xoá margin mặc định của tiêu đề và đoạn văn */
+h1, h2, h3, p { margin: 0; }
+
+/* ============================================================
+   3. ACCESSIBILITY — skip link
+   Liên kết "Bỏ qua điều hướng" cho người dùng bàn phím.
+   Mặc định đẩy ra ngoài màn hình (left: -9999px), khi được
+   focus thì trượt vào để nhìn thấy.
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 16px;
+  z-index: 200;
+}
+.skip-link:focus { left: 8px; top: 8px; }
+
+/* ============================================================
+   4. BUTTONS — họ nút bấm
+   .btn            : lớp nền tảng chung cho mọi nút
+   .btn--primary   : nút tím đặc, là nút chính (primary)
+   .btn--outline   : nút viền đen, nền trong suốt
+   .btn--ghost     : giống outline, dùng làm variant thứ 2
+   .btn--inverse   : nút trắng dùng trên nền tối (promo banner)
+   .icon-btn       : nút tròn chỉ chứa icon (menu, cart, close)
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+/* Hiệu ứng bấm: nút hơi lõm xuống (scale 0.98) */
+.btn:active { transform: scale(0.98); }
+
+.btn--primary { background: var(--purple); color: #fff; }
+.btn--primary:hover { background: var(--purple-dark); }
+
+.btn--outline { border-color: var(--ink); color: var(--ink); background: transparent; }
+.btn--outline:hover { background: var(--gray-100); }
+
+.btn--ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+.btn--ghost:hover { background: var(--gray-100); }
+
+.btn--inverse { background: #fff; color: var(--ink); }
+.btn--inverse:hover { background: var(--gray-100); }
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  padding: 8px;
+  border-radius: 50%;
+  display: inline-flex;
+  cursor: pointer;
+}
+.icon-btn:hover { background: var(--gray-100); }
+
+.site-header__toggle {
+  display: none;
+}
+
+
+/* ============================================================
+   5. HEADER — thanh điều hướng trên cùng
+   position: sticky -> header dính trên đỉnh khi cuộn trang.
+   .site-header__inner dùng Flex dàn 3 phần:
+   logo | thanh tìm kiếm | các link điều hướng.
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.site-header__inner {
+  height: var(--header-h);
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--purple);
+  flex-shrink: 0;
+}
+
+/* Thanh tìm kiếm: flex: 1 -> co giãn lấp chỗ trống còn lại */
+.site-header__search {
+  flex: 1;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0 6px 0 16px;
+  height: 40px;
+}
+.site-header__search input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 0.95rem;
+  font-family: var(--font);
+  background: transparent;
+}
+/* Nút kính lúp màu đen, hình tròn nằm trong ô tìm kiếm */
+.site-header__search-btn {
+  border: none;
+  background: var(--ink);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+.site-header__link { font-size: 0.9rem; font-weight: 600; }
+.site-header__link:hover { color: var(--purple); }
+
+/* ============================================================
+   6. CATEGORY BAR — dải danh mục dưới header
+   .category-bar__scroller cuộn ngang (overflow-x) khi danh
+   mục quá dài; thanh cuộn bị ẩn đi cho gọn.
+   ============================================================ */
+.category-bar {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 44px;
+  border-top: 1px solid var(--gray-300);
+}
+
+.category-bar__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--ink);
+}
+
+.category-bar__scroller {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.category-bar__scroller::-webkit-scrollbar { display: none; }
+
+.category-bar__link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  white-space: nowrap;
+}
+.category-bar__link:hover { color: var(--purple); }
+
+/* ============================================================
+   7. MOBILE DRAWER — menu trượt từ trái (mobile)
+   Mặc định ẩn (display: none). JS thêm class .open để hiện lên.
+   inset: 0 -> phủ toàn bộ màn hình; lớp nền mờ + panel trắng
+   320px bên trái. Nút đóng và phím Esc được xử lý trong script.js.
+   ============================================================ */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  display: none;
+}
+.mobile-drawer.open { display: block; }
+
+.mobile-drawer__panel {
+  background: #fff;
+  width: 320px;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.mobile-drawer__close { align-self: flex-end; margin-bottom: 12px; }
+
+.mobile-drawer__link {
+  padding: 12px 4px;
+  font-weight: 600;
+  border-radius: var(--radius);
+}
+.mobile-drawer__link:hover { background: var(--gray-100); }
+.mobile-drawer__link--signup {
+  background: var(--purple);
+  color: #fff;
+  text-align: center;
+  border-radius: var(--radius);
+}
+.mobile-drawer__link--signup:hover { background: var(--purple-dark); }
+
+.mobile-drawer__separator {
+  border: none;
+  border-top: 1px solid var(--gray-300);
+  margin: 10px 0;
+  width: 100%;
+}
+
+/* ============================================================
+   8. LAYOUT HELPERS — class dùng chung
+   .section: giới hạn nội dung 1340px, căn giữa trang.
+   Nhóm heading: tiêu đề chung cho các section trong main.
+   ============================================================ */
+.section {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.categories__heading,
+.carousel__heading,
+.trusted-by__heading,
+.testimonials__heading {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+/* ============================================================
+   9. HERO — khối giới thiệu đầu trang
+   Grid 2 cột: cột chữ (copy) + cột ảnh (media), align-items:
+   center để căn giữa theo chiều dọc. (Chỗ này sau sẽ responsive
+   chuyển về 1 cột khi màn hình nhỏ.)
+   ============================================================ */
+.hero {
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-300);
+}
+.hero__inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero__title {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+.hero__text {
+  color: var(--gray-700);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-bottom: 26px;
+}
+.hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ============================================================
+   10. CATEGORY GRID — lưới danh mục
+   repeat(2, 1fr) -> 2 cột bằng nhau.
+   (Chỗ này sau sẽ responsive tăng lên 3 hoặc 5 cột.)
+   ============================================================ */
+.categories__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.categories__tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 16px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.categories__tile svg { color: var(--purple); }
+.categories__tile:hover { border-color: var(--ink); background: var(--gray-100); }
+
+/* ============================================================
+   11. COURSE CAROUSEL — băng khóa học cuộn ngang
+   .carousel__track: dãy thẻ (course-card) nằm ngang, scroll-snap
+   giúp thẻ "dừng gọn" khi cuộn. Nút mũi tên được JS (script.js)
+   gắn sự kiện cuộn theo data-target / data-dir.
+   course-card__badge: nhãn nằm chồng góc trái trên ảnh, dùng
+   position: absolute (nằm ngoài luồng, so với .course-card).
+   ============================================================ */
+.carousel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.carousel__heading { margin-bottom: 0; }
+
+.carousel__controls { display: flex; gap: 8px; }
+.carousel__button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-300);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.carousel__button:hover { border-color: var(--ink); }
+
+.carousel__track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.carousel__track::-webkit-scrollbar { display: none; }
+
+.course-card {
+  flex: 0 0 auto;
+  width: 240px;
+  scroll-snap-align: start;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+}
+.course-card__image { width: 100%; height: 135px; object-fit: cover; }
+
+.course-card__body { padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+.course-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+  min-height: 2.6em;
+}
+.course-card__instructor { font-size: 0.8rem; color: var(--gray-600); }
+
+.course-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+}
+.course-card__score { font-weight: 800; color: #b4690e; }
+.course-card__stars { color: #b4690e; letter-spacing: -1px; font-size: 0.8rem; }
+.course-card__count { color: var(--gray-600); }
+
+.course-card__price { display: flex; align-items: baseline; gap: 8px; margin-top: 2px; }
+.course-card__price-now { font-weight: 800; font-size: 1.05rem; }
+.course-card__price-was { color: var(--gray-600); text-decoration: line-through; font-size: 0.85rem; }
+
+.course-card__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #eceb98;
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+.course-card__badge--new { background: var(--ink); color: #fff; }
+
+/* ============================================================
+   12. TRUSTED BY — dải logo công ty đối tác
+   flex-wrap: wrap -> các logo tự xuống hàng khi không đủ chỗ.
+   ============================================================ */
+.trusted-by {
+  padding-top: 0;
+  padding-bottom: 40px;
+  text-align: center;
+}
+.trusted-by__heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+}
+.trusted-by__wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.trusted-by__logo { opacity: 0.75; }
+
+/* ============================================================
+   13. PROMO BANNER — banner khuyến mãi
+   Nền tối (--ink), chữ trắng để nổi bật.
+   eyebrow: dòng chữ nhỏ, viết hoa, in đậm phía trên tiêu đề.
+   ============================================================ */
+.promo-banner {
+  background: var(--ink);
+  color: #fff;
+}
+.promo-banner__inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+.promo-banner__copy { max-width: 60ch; }
+.promo-banner__eyebrow {
+  color: var(--purple);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.promo-banner__title {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.promo-banner__text { color: var(--gray-300); margin-bottom: 22px; line-height: 1.6; }
+
+/* ============================================================
+   14. WHY — phần "lý do chọn Udemy"
+   Grid 1 cột: cột thống kê (stat) + cột danh sách lợi ích.
+   (Chỗ này sau sẽ responsive chia thành 2 cột trên màn hình lớn.)
+   ============================================================ */
+.why {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.why__stat { display: flex; flex-direction: column; gap: 6px; }
+.why__number { font-size: 3rem; font-weight: 800; color: var(--purple); line-height: 1; }
+.why__label { color: var(--gray-700); margin-bottom: 18px; }
+.why__title { font-size: 1.6rem; font-weight: 800; }
+
+.why__features {
+  display: flex;
+  flex-direction: column;
+}
+.why__feature {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--gray-300);
+}
+.why__feature:last-child { border-bottom: 1px solid var(--gray-300); }
+.why__feature svg { flex-shrink: 0; margin-top: 2px; }
+.why__feature-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+.why__feature-text { color: var(--gray-700); line-height: 1.55; }
+
+/* ============================================================
+   15. TESTIMONIALS — đánh giá của học viên
+   Grid 1 cột thẻ đánh giá, mỗi thẻ gồm trích dẫn (quote) + tác giả
+   (figcaption). (Chỗ này sau sẽ responsive thành 3 cột.)
+   ============================================================ */
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.testimonials__card {
+  margin: 0;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.testimonials__quote {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.testimonials__caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+.testimonials__avatar { border-radius: 50%; }
+.testimonials__meta { display: block; color: var(--gray-600); }
+
+/* ============================================================
+   16. FOOTER — chân trang
+   columns: lưới các cột link (hiện 2 cột, sau này responsive
+   thành 4 cột). bottom: logo + hộp chọn ngôn ngữ + bản quyền
+   (copyright đẩy về bên phải nhờ margin-left: auto).
+   ============================================================ */
+.site-footer {
+  background: var(--gray-100);
+  border-top: 1px solid var(--gray-300);
+}
+.site-footer__columns {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 48px 24px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.site-footer__heading { font-size: 0.95rem; font-weight: 800; margin-bottom: 14px; }
+.site-footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.site-footer__list a { font-size: 0.88rem; color: var(--gray-700); }
+.site-footer__list a:hover { color: var(--purple); }
+
+.site-footer__social { display: flex; gap: 12px; margin-top: 16px; }
+.site-footer__social a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-300);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-footer__social a:hover { border-color: var(--ink); }
+
+.site-footer__bottom {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 20px 24px 32px;
+  border-top: 1px solid var(--gray-300);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.site-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  color: var(--purple);
+}
+.site-footer__language {
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-family: var(--font);
+  background: #fff;
+}
+.site-footer__copyright { color: var(--gray-600); font-size: 0.85rem; margin-left: auto; }
+
+/* ============================================================
+   17. REDUCED MOTION — người dùng yêu cầu giảm chuyển động
+   Tôn trọng tuỳ chọn của hệ điều hành (accessibility).
+   LƯU Ý: đây là media query theo sở thích, KHÔNG phải responsive
+   theo kích thước màn hình.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .icon-btn { transition: none; }
+}
+
+
+
+
+@media (max-width: 1024px) {
+  .site-header__toggle {
+    display: flex;
+  }
+
+  .site-header__nav {
+    display: none;
+  }
+  .hero__inner {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .hero__media {
+    width: 100%;
+    order: 1;
+  }
+  .hero__copy {
+    order: 2;
+  }
+}

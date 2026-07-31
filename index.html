@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Udemy Clone — Online Courses</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="site-header__inner">
+    
+
+    <a class="site-header__logo" href="#" aria-label="Udemy home">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M16 2 L28 8 V16 C28 23 22.5 28.5 16 30 C9.5 28.5 4 23 4 16 V8 Z" fill="#a435f0"/><path d="M11 15v5.2c0 2 1.6 3.3 5 3.3s5-1.3 5-3.3V15h-2.6v5c0 .9-.7 1.4-2.4 1.4s-2.4-.5-2.4-1.4v-5H11Z" fill="#fff"/></svg>
+      <span>Udemy</span>
+    </a>
+
+    <form class="site-header__search" role="search">
+      <button type="submit" class="site-header__search-btn" aria-label="Submit search">
+        <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <input type="search" name="q" placeholder="Search for anything" aria-label="Search for courses">
+    </form>
+
+    <nav class="site-header__nav" aria-label="Secondary">
+      <a href="#" class="site-header__link site-header__link--business">Udemy Business</a>
+      <a href="#" class="site-header__link">Teach on Udemy</a>
+      <button class="icon-btn site-header__cart" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.2" fill="currentColor"/><circle cx="17" cy="21" r="1.2" fill="currentColor"/></svg>
+      </button>
+      <a href="#" class="site-header__link site-header__link--login">Log in</a>
+      <a href="#" class="btn btn--outline">Sign up</a>
+    </nav>
+    <button class="icon-btn site-header__toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Category bar -->
+  <nav class="category-bar" aria-label="Course categories">
+    <button class="category-bar__button">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      Categories
+    </button>
+    <div class="category-bar__scroller">
+      <a href="#" class="category-bar__link">Development</a>
+      <a href="#" class="category-bar__link">Business</a>
+      <a href="#" class="category-bar__link">Finance &amp; Accounting</a>
+      <a href="#" class="category-bar__link">IT &amp; Software</a>
+      <a href="#" class="category-bar__link">Office Productivity</a>
+      <a href="#" class="category-bar__link">Personal Development</a>
+      <a href="#" class="category-bar__link">Design</a>
+      <a href="#" class="category-bar__link">Marketing</a>
+      <a href="#" class="category-bar__link">Health &amp; Fitness</a>
+      <a href="#" class="category-bar__link">Music</a>
+      <a href="#" class="category-bar__link">Teaching &amp; Academics</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer__panel">
+    <button class="icon-btn mobile-drawer__close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="#" class="mobile-drawer__link">Log in</a>
+    <a href="#" class="mobile-drawer__link mobile-drawer__link--signup">Sign up</a>
+    <hr class="mobile-drawer__separator">
+    <a href="#" class="mobile-drawer__link">Udemy Business</a>
+    <a href="#" class="mobile-drawer__link">Teach on Udemy</a>
+    <hr class="mobile-drawer__separator">
+    <a href="#" class="mobile-drawer__link">Development</a>
+    <a href="#" class="mobile-drawer__link">Business</a>
+    <a href="#" class="mobile-drawer__link">Design</a>
+    <a href="#" class="mobile-drawer__link">Marketing</a>
+    <a href="#" class="mobile-drawer__link">IT &amp; Software</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <h1 class="hero__title">Learning that fits your schedule, not the other way around</h1>
+        <p class="hero__text">Choose from over 200,000 courses taught by real practitioners. Learn at your own pace, on any device, and keep what you finish forever.</p>
+        <div class="hero__actions">
+          <a href="#courses-1" class="btn btn--primary">Explore courses</a>
+          <a href="#categories" class="btn btn--ghost">Browse categories</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <img class="hero__image" src="https://picsum.photos/seed/udemy-hero-learner/720/560" alt="A learner studying on a laptop at a desk" width="720" height="560" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- Category pills -->
+  <section class="section categories" id="categories" aria-labelledby="categories-heading">
+    <h2 id="categories-heading" class="categories__heading">Top categories</h2>
+    <div class="categories__grid">
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 9l-5 5 5 5M16 9l5 5-5 5M14 4l-4 20" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Development</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><rect x="3" y="4" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>Business</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h6v6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Finance &amp; Accounting</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 21h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>IT &amp; Software</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        <span>Personal Development</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 3l2.6 5.4 6 .8-4.3 4.1 1 5.9-5.3-2.8-5.3 2.8 1-5.9L3.4 9.2l6-.8Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/></svg>
+        <span>Design</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path d="M3 11l18-7-7 18-2.5-7L3 11Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>
+        <span>Marketing</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 21s-7-4.5-9.3-9A5.1 5.1 0 0 1 12 6.5 5.1 5.1 0 0 1 21.3 12c-2.3 4.5-9.3 9-9.3 9Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>
+        <span>Health &amp; Fitness</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><circle cx="6" cy="18" r="2.5" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17" cy="16" r="2.5" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8.5 18V6l11-2v12" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+        <span>Music</span>
+      </a>
+      <a href="#" class="categories__tile">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 6h16M4 6l2 13h12l2-13M9 10v5M15 10v5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        <span>Teaching &amp; Academics</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Course carousel 1 -->
+  <section class="section carousel" id="courses-1" aria-labelledby="courses-1-heading">
+    <div class="carousel__head">
+      <h2 id="courses-1-heading" class="carousel__heading">Learners are viewing</h2>
+      <div class="carousel__controls">
+        <button class="carousel__button" data-target="track-1" data-dir="-1" aria-label="Scroll left">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="carousel__button" data-target="track-1" data-dir="1" aria-label="Scroll right">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel__track" id="track-1">
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-python-bootcamp/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">The Complete Python Developer Bootcamp</h3>
+          <p class="course-card__instructor">Marta Oliveira</p>
+          <div class="course-card__rating"><span class="course-card__score">4.7</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(38,214)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$54.99</span><span class="course-card__price-was">$149.99</span></div>
+          <span class="course-card__badge">Bestseller</span>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-ui-design/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">UI/UX Design Foundations: From Sketch to Prototype</h3>
+          <p class="course-card__instructor">Daniel Frost</p>
+          <div class="course-card__rating"><span class="course-card__score">4.6</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(12,983)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$44.99</span><span class="course-card__price-was">$119.99</span></div>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-excel/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Microsoft Excel: Data Analysis with Formulas &amp; Pivot Tables</h3>
+          <p class="course-card__instructor">Priya Nair</p>
+          <div class="course-card__rating"><span class="course-card__score">4.5</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(51,027)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$49.99</span><span class="course-card__price-was">$129.99</span></div>
+          <span class="course-card__badge">Bestseller</span>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-digital-marketing/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Digital Marketing Strategy: SEO, Ads &amp; Analytics</h3>
+          <p class="course-card__instructor">Owen Bracken</p>
+          <div class="course-card__rating"><span class="course-card__score">4.4</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(9,442)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$59.99</span><span class="course-card__price-was">$139.99</span></div>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-guitar/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Learn Guitar: Beginner to Confident Player</h3>
+          <p class="course-card__instructor">Alessandro Vitti</p>
+          <div class="course-card__rating"><span class="course-card__score">4.8</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(6,715)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$39.99</span><span class="course-card__price-was">$99.99</span></div>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-photography/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Photography Masterclass: Complete Camera Guide</h3>
+          <p class="course-card__instructor">Ines Cabral</p>
+          <div class="course-card__rating"><span class="course-card__score">4.7</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(21,308)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$54.99</span><span class="course-card__price-was">$134.99</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Trusted by -->
+  <section class="section trusted-by" aria-labelledby="trusted-heading">
+    <h2 id="trusted-heading" class="trusted-by__heading">Trusted by teams at</h2>
+    <div class="trusted-by__wall">
+      <img class="trusted-by__logo" src="https://cdn.simpleicons.org/volkswagen/6a6f73" alt="Volkswagen" height="28" loading="lazy">
+      <img class="trusted-by__logo" src="https://cdn.simpleicons.org/box/6a6f73" alt="Box" height="28" loading="lazy">
+      <img class="trusted-by__logo" src="https://cdn.simpleicons.org/netapp/6a6f73" alt="NetApp" height="28" loading="lazy">
+      <img class="trusted-by__logo" src="https://cdn.simpleicons.org/cisco/6a6f73" alt="Cisco" height="28" loading="lazy">
+      <img class="trusted-by__logo" src="https://cdn.simpleicons.org/pearson/6a6f73" alt="Pearson" height="28" loading="lazy">
+      <img class="trusted-by__logo" src="https://cdn.simpleicons.org/vimeo/6a6f73" alt="Vimeo" height="28" loading="lazy">
+    </div>
+  </section>
+
+  <!-- Promo banner -->
+  <section class="promo-banner">
+    <div class="promo-banner__inner">
+      <div class="promo-banner__copy">
+        <p class="promo-banner__eyebrow">Limited-time offer</p>
+        <h2 class="promo-banner__title">Courses from $12.99, this week only</h2>
+        <p class="promo-banner__text">Skills for your present and your future. Get them while they are this affordable.</p>
+        <a href="#courses-2" class="btn btn--inverse">Shop courses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course carousel 2 -->
+  <section class="section carousel" id="courses-2" aria-labelledby="courses-2-heading">
+    <div class="carousel__head">
+      <h2 id="courses-2-heading" class="carousel__heading">New and trending</h2>
+      <div class="carousel__controls">
+        <button class="carousel__button" data-target="track-2" data-dir="-1" aria-label="Scroll left">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="carousel__button" data-target="track-2" data-dir="1" aria-label="Scroll right">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel__track" id="track-2">
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-ai-fundamentals/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">AI Fundamentals: Machine Learning for Beginners</h3>
+          <p class="course-card__instructor">Radu Cernat</p>
+          <div class="course-card__rating"><span class="course-card__score">4.6</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(3,102)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$64.99</span><span class="course-card__price-was">$154.99</span></div>
+          <span class="course-card__badge course-card__badge--new">New</span>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-nextjs/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Full-Stack Web Apps with Next.js and TypeScript</h3>
+          <p class="course-card__instructor">Han Yu</p>
+          <div class="course-card__rating"><span class="course-card__score">4.7</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(5,588)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$59.99</span><span class="course-card__price-was">$144.99</span></div>
+          <span class="course-card__badge course-card__badge--new">New</span>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-public-speaking/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Public Speaking: Present with Confidence</h3>
+          <p class="course-card__instructor">Bianca Souza</p>
+          <div class="course-card__rating"><span class="course-card__score">4.5</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(2,247)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$44.99</span><span class="course-card__price-was">$109.99</span></div>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-project-management/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Project Management Professional: Exam Prep</h3>
+          <p class="course-card__instructor">Gerald Okafor</p>
+          <div class="course-card__rating"><span class="course-card__score">4.6</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(8,861)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$69.99</span><span class="course-card__price-was">$159.99</span></div>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-figma/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Figma for Product Teams: Components to Handoff</h3>
+          <p class="course-card__instructor">Noora Salmi</p>
+          <div class="course-card__rating"><span class="course-card__score">4.8</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(4,033)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$49.99</span><span class="course-card__price-was">$124.99</span></div>
+          <span class="course-card__badge course-card__badge--new">New</span>
+        </div>
+      </article>
+
+      <article class="course-card">
+        <img class="course-card__image" src="https://picsum.photos/seed/course-spanish/300/170" alt="" width="300" height="170" loading="lazy">
+        <div class="course-card__body">
+          <h3 class="course-card__title">Spanish for Beginners: Speak from Day One</h3>
+          <p class="course-card__instructor">Camila Reyes</p>
+          <div class="course-card__rating"><span class="course-card__score">4.7</span><span class="course-card__stars" aria-hidden="true">★★★★★</span><span class="course-card__count">(14,509)</span></div>
+          <div class="course-card__price"><span class="course-card__price-now">$39.99</span><span class="course-card__price-was">$94.99</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Why Udemy / stats -->
+  <section class="section why" aria-labelledby="why-heading">
+    <div class="why__stat">
+      <p class="why__number">62.3M</p>
+      <p class="why__label">learners already growing their skills</p>
+      <h2 id="why-heading" class="why__title">Why learners choose Udemy</h2>
+    </div>
+    <div class="why__features">
+      <div class="why__feature">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 6.9L12 17.8 5.8 21l1.3-6.9L2 9.4l7-.9Z" stroke="#a435f0" stroke-width="1.6" fill="none" stroke-linejoin="round"/></svg>
+        <div>
+          <h3 class="why__feature-title">Taught by working practitioners</h3>
+          <p class="why__feature-text">Every instructor teaches from real project experience, not a generic script.</p>
+        </div>
+      </div>
+      <div class="why__feature">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="#a435f0" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M9 13l2 2 4-4" stroke="#a435f0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <h3 class="why__feature-title">Skills mapped to real jobs</h3>
+          <p class="why__feature-text">Course tracks are built around the tools and workflows hiring teams actually ask for.</p>
+        </div>
+      </div>
+      <div class="why__feature">
+        <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9" stroke="#a435f0" stroke-width="1.6" fill="none"/><path d="M12 7v5l3.5 2" stroke="#a435f0" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+        <div>
+          <h3 class="why__feature-title">Learn at your own pace</h3>
+          <p class="why__feature-text">Every purchase includes lifetime access, so you can pick up right where you left off.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials" aria-labelledby="testimonials-heading">
+    <h2 id="testimonials-heading" class="testimonials__heading">What learners are saying</h2>
+    <div class="testimonials__grid">
+      <figure class="testimonials__card">
+        <blockquote class="testimonials__quote">I switched careers into data analysis after finishing two courses back to back. The pacing let me study around a full-time job.</blockquote>
+        <figcaption class="testimonials__caption">
+          <img class="testimonials__avatar" src="https://picsum.photos/seed/learner-amara/64/64" alt="" width="40" height="40" loading="lazy">
+          <div><strong>Amara Whitfield</strong><span class="testimonials__meta">Data Analyst, formerly in retail</span></div>
+        </figcaption>
+      </figure>
+      <figure class="testimonials__card">
+        <blockquote class="testimonials__quote">The Excel course paid for itself in the first week. My manager asked how I built the report so fast.</blockquote>
+        <figcaption class="testimonials__caption">
+          <img class="testimonials__avatar" src="https://picsum.photos/seed/learner-devon/64/64" alt="" width="40" height="40" loading="lazy">
+          <div><strong>Devon Marsh</strong><span class="testimonials__meta">Operations Coordinator</span></div>
+        </figcaption>
+      </figure>
+      <figure class="testimonials__card">
+        <blockquote class="testimonials__quote">I'd tried three other platforms before this one. The instructor actually answers questions in the Q&amp;A section.</blockquote>
+        <figcaption class="testimonials__caption">
+          <img class="testimonials__avatar" src="https://picsum.photos/seed/learner-yuki/64/64" alt="" width="40" height="40" loading="lazy">
+          <div><strong>Yuki Tanaka</strong><span class="testimonials__meta">Freelance Designer</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="site-footer__columns">
+    <div class="site-footer__column">
+      <h3 class="site-footer__heading">Udemy Business</h3>
+      <ul class="site-footer__list">
+        <li><a href="#">Teach on Udemy</a></li>
+        <li><a href="#">Get the app</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="site-footer__column">
+      <h3 class="site-footer__heading">Careers</h3>
+      <ul class="site-footer__list">
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Help and support</a></li>
+        <li><a href="#">Affiliate</a></li>
+        <li><a href="#">Investors</a></li>
+      </ul>
+    </div>
+    <div class="site-footer__column">
+      <h3 class="site-footer__heading">Terms</h3>
+      <ul class="site-footer__list">
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Cookie settings</a></li>
+        <li><a href="#">Sitemap</a></li>
+        <li><a href="#">Accessibility statement</a></li>
+      </ul>
+    </div>
+    <div class="site-footer__column">
+      <h3 class="site-footer__heading">Get the app</h3>
+      <ul class="site-footer__list">
+        <li><a href="#">iOS</a></li>
+        <li><a href="#">Android</a></li>
+      </ul>
+      <div class="site-footer__social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 10.5v6M8 8v.01M12 16.5v-3.7c0-1.3.9-2.3 2.3-2.3s2.2 1 2.2 2.3v3.7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <a href="#" class="site-footer__logo">
+      <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true"><path d="M16 2 L28 8 V16 C28 23 22.5 28.5 16 30 C9.5 28.5 4 23 4 16 V8 Z" fill="#a435f0"/><path d="M11 15v5.2c0 2 1.6 3.3 5 3.3s5-1.3 5-3.3V15h-2.6v5c0 .9-.7 1.4-2.4 1.4s-2.4-.5-2.4-1.4v-5H11Z" fill="#fff"/></svg>
+      <span>Udemy</span>
+    </a>
+    <select class="site-footer__language" name="language" aria-label="Language">
+      <option>English</option>
+      <option>Tiếng Việt</option>
+      <option>Español</option>
+      <option>Français</option>
+    </select>
+    <p class="site-footer__copyright">© 2026 Udemy Clone. Built for practice purposes only.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
